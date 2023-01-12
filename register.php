@@ -14,13 +14,13 @@ if(isset($_POST['barcode'])){
     if($db->isBarcodeExisted($barcode)){
 
         $response["error"] = TRUE;
-        $response["error_msg"] = "User already existed with".$barcode;
+        $response["error_msg"] = "User ID ".$barcode;
 
     }else{
         $user = $db->storeUser($barcode);
         if($user){
             $response["error"] = FALSE;
-            $response["uid"] = $user["unique_id"];
+            $response["uid"] = $user["barcode"];
             $response["user"]["barcode"] = $user["barcode"];
             $response["user"]["created_at"] = $user["created_at"];
 
